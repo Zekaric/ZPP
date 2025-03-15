@@ -1,0 +1,25 @@
+/* Had to add this manually. */
+-d_WIN64
+-dWIN32
+-d_DEBUG
+-d_WINDOWS
+-d_USRDLL
+-dGRL_STATIC
+-d_UNICODE
+-dUNICODE
+-d_AMD64_
+-i../grl
+-i"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include"
+-i"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\atlmfc\include"
+-i"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include"
+-i"C:\Windows\Microsoft.NET\Framework\include"
+-w4
+
+/* Bogus error */
+-estring( 960,  __identifier )
+-estring( 9022, __identifier )
+
+
+/* Generated from file: grl.vcxproj */
+/*  */
+zpp.c                       // 172: Include = "garray.c" 

@@ -1,0 +1,3196 @@
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=arrayheader
+/******************************************************************************
+file:       [type]Array
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]ARRAYH)
+#define      [type]ARRAYH
+
+/*****************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef G_Array [type]Array;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]ArrayCreate(OPTIONAL_COMPARE_FUNC) \
+   ([type]Array *) gleakCreate([typeVar]ArrayCreate_((OPTIONAL_COMPARE_FUNC)), gsizeof([type]Array))
+//lint -restore
+
+grlAPI Gb                               [typeVar]ArrayAdd(             [type]Array       * const [typeVar]Array,                     [type] const value);
+grlAPI Gb                               [typeVar]ArrayAddAt(           [type]Array       * const [typeVar]Array, Gindex const index, [type] const value);
+grlAPI Gb                               [typeVar]ArrayAddBegin(        [type]Array       * const [typeVar]Array,                     [type] const value);
+grlAPI Gb                               [typeVar]ArrayAddEnd(          [type]Array       * const [typeVar]Array,                     [type] const value);
+
+grlAPI Gb                               [typeVar]ArrayClear(           [type]Array       * const [typeVar]Array, Gcount const count, Gindex const index);
+grlAPI Gb                               [typeVar]ArrayCopy(            [type]Array       * const [typeVar]Array, Gcount const count, Gindex const indexSrc, Gindex const indexDst);
+grlAPI Gb                               [typeVar]ArrayCopyFrom(        [type]Array       * const [typeVar]ArrayDst, Gindex const indexDst, [type]Array const * const [typeVar]ArraySrc, Gcount const count, Gindex const indexSrc);
+grlAPI [type]Array                     *[typeVar]ArrayCreate_(                                                   GrlCompareFunc const optionalCompareFunc);
+grlAPI Gb                               [typeVar]ArrayCreateContent(   [type]Array       * const [typeVar]Array, GrlCompareFunc const optionalCompareFunc);
+
+grlAPI void                             [typeVar]ArrayDestroy(         [type]Array       * const [typeVar]Array);
+grlAPI void                             [typeVar]ArrayDestroyContent(  [type]Array const * const [typeVar]Array);
+
+grlAPI Gb                               [typeVar]ArrayErase(           [type]Array       * const [typeVar]Array, [type] const value);
+grlAPI Gb                               [typeVar]ArrayEraseAt(         [type]Array       * const [typeVar]Array, Gcount const count, Gindex const index);
+grlAPI void                             [typeVar]ArrayEraseBegin(      [type]Array       * const [typeVar]Array);
+grlAPI void                             [typeVar]ArrayEraseEnd(        [type]Array       * const [typeVar]Array);
+
+grlAPI Gindex                           [typeVar]ArrayFind(            [type]Array const * const [typeVar]Array, [type] const value);
+grlAPI void                             [typeVar]ArrayFlush(           [type]Array       * const [typeVar]Array);
+grlAPI Gb                               [typeVar]ArrayForEach(         [type]Array const * const [typeVar]Array, GrlForEachFunc const func);
+
+grlAPI [type]                          *[typeVar]ArrayGet(             [type]Array const * const [typeVar]Array);
+grlAPI [type]                           [typeVar]ArrayGetAt(           [type]Array const * const [typeVar]Array, Gindex const index);
+grlAPI [type]                           [typeVar]ArrayGetBegin(        [type]Array const * const [typeVar]Array);
+grlAPI Gcount                           [typeVar]ArrayGetCount(        [type]Array const * const [typeVar]Array);
+grlAPI [type]                           [typeVar]ArrayGetEnd(          [type]Array const * const [typeVar]Array);
+grlAPI Gsize                            [typeVar]ArrayGetSize(         [type]Array const * const [typeVar]Array);
+
+grlAPI Gb                               [typeVar]ArraySetCount(        [type]Array       * const [typeVar]Array, Gcount const value);
+grlAPI Gb                               [typeVar]ArraySort(            [type]Array       * const [typeVar]Array);
+grlAPI Gb                               [typeVar]ArraySwap(            [type]Array       * const [typeVar]Array, Gindex const indexA, Gindex const indexB);
+
+grlAPI Gb                               [typeVar]ArrayUpdateAt(        [type]Array       * const [typeVar]Array, Gindex const index, [type] const value);
+
+/*****************************************************************************/
+#ifdef __cplusplus
+}
+#endif
+/*****************************************************************************/
+
+#endif
+=arrayheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=arraysrc
+/******************************************************************************
+file:       [type]Array
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+// Quiet some lint
+//lint -save -e960 -e9005
+
+/******************************************************************************
+global:
+function:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]ArrayAdd
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAdd([type]Array * const [typeVar]Array, [type] const value)
+{
+   Gb result;
+   
+   genter;
+
+   result = g_ArrayAdd([typeVar]Array, &value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayAddAt
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAddAt([type]Array * const [typeVar]Array, Gindex const index, [type] const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayAddAt([typeVar]Array, index, (Gp const *) &value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayAddBegin
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAddBegin([type]Array * const [typeVar]Array, [type] const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayAddBegin([typeVar]Array, (Gp const *) &value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayAddEnd
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAddEnd([type]Array * const [typeVar]Array, [type] const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayAddEnd([typeVar]Array, (Gp const *) &value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayClear
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayClear([type]Array * const [typeVar]Array, Gcount const count, Gindex const index)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayClear([typeVar]Array, count, index);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCopy
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayCopy([type]Array * const [typeVar]Array, Gcount const count, Gindex const indexSrc, Gindex const indexDst)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ArrayCopy([typeVar]Array, count, indexSrc, indexDst);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCopyFrom
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayCopyFrom([type]Array * const [typeVar]ArrayDst, Gindex const indexDst, [type]Array const * const [typeVar]ArraySrc, Gcount const count, Gindex const indexSrc)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayCopyFrom([typeVar]ArrayDst, indexDst, [typeVar]ArraySrc, count, indexSrc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCreate
+******************************************************************************/
+grlAPI [type]Array *[typeVar]ArrayCreate_(GrlCompareFunc const optionalCompareFunc)
+{
+   [type]Array *result;
+
+   genter;
+   
+   result = g_ArrayCreate_(
+      gsizeof([type]),
+      "[type]Array",
+      "[type]",
+      optionalCompareFunc,
+      isVectorSizing,
+      gbFALSE);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayCreateContent([type]Array * const [typeVar]Array, 
+   GrlCompareFunc const optionalCompareFunc)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ArrayCreateContent(
+      [typeVar]Array,
+      gsizeof([type]),
+      "[type]Array",
+      "[type]",
+      optionalCompareFunc,
+      isVectorSizing,
+      gbFALSE);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayDestroy
+******************************************************************************/
+grlAPI void [typeVar]ArrayDestroy([type]Array * const [typeVar]Array)
+{
+   genter;
+   
+   g_ArrayDestroy([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayDestroyContent
+******************************************************************************/
+grlAPI void [typeVar]ArrayDestroyContent([type]Array const * const [typeVar]Array)
+{
+   genter;
+   
+   g_ArrayDestroyContent([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayErase
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayErase([type]Array * const [typeVar]Array, [type] const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayErase([typeVar]Array, &value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayEraseAt
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayEraseAt([type]Array * const [typeVar]Array, Gcount const count, Gindex const index)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayEraseAt([typeVar]Array, count, index);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayEraseBegin
+******************************************************************************/
+grlAPI void [typeVar]ArrayEraseBegin([type]Array * const [typeVar]Array)
+{
+   genter;
+
+   g_ArrayEraseBegin([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayEraseEnd
+******************************************************************************/
+grlAPI void [typeVar]ArrayEraseEnd([type]Array * const [typeVar]Array)
+{
+   genter;
+   
+   g_ArrayEraseEnd([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayFind
+******************************************************************************/
+grlAPI Gindex [typeVar]ArrayFind([type]Array const * const [typeVar]Array, [type] const value)
+{
+   Gindex result;
+
+   genter;
+   
+   result = g_ArrayFind([typeVar]Array, &value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayFlush
+******************************************************************************/
+grlAPI void [typeVar]ArrayFlush([type]Array * const [typeVar]Array)
+{
+   genter;
+
+   g_ArraySetCount([typeVar]Array, 0); //lint !e534
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayForEach
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayForEach([type]Array const * const [typeVar]Array, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayForEach([typeVar]Array, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGet
+******************************************************************************/
+grlAPI [type] *[typeVar]ArrayGet([type]Array const * const [typeVar]Array)
+{
+   [type] *result;
+
+   genter;
+   
+   result = ([type] *) g_ArrayGet([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetAt
+******************************************************************************/
+grlAPI [type] [typeVar]ArrayGetAt([type]Array const * const [typeVar]Array, Gindex const index)
+{
+   void *vtemp;
+
+   genter;
+   
+   vtemp = g_ArrayGetAt([typeVar]Array, index);
+   greturnIf(!vtemp, [def]);
+
+   greturn *(([type] *) vtemp);
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetBegin
+******************************************************************************/
+grlAPI [type] [typeVar]ArrayGetBegin([type]Array const * const [typeVar]Array)
+{
+   void *vtemp;
+
+   genter;
+   
+   vtemp = g_ArrayGetBegin([typeVar]Array);
+   greturnIf(!vtemp, [def]);
+
+   greturn *(([type] *) vtemp);
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]ArrayGetCount([type]Array const * const [typeVar]Array)
+{
+   Gcount result;
+
+   genter;
+   
+   result = g_ArrayGetCount([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetEnd
+******************************************************************************/
+grlAPI [type] [typeVar]ArrayGetEnd([type]Array const * const [typeVar]Array)
+{
+   void *vtemp;
+
+   genter;
+   
+   vtemp = g_ArrayGetEnd([typeVar]Array);
+   greturnIf(!vtemp, [def]);
+
+   greturn *(([type] *) vtemp);
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetSize
+******************************************************************************/
+grlAPI Gsize [typeVar]ArrayGetSize([type]Array const * const [typeVar]Array)
+{
+   Gsize result;
+
+   genter;
+
+   result = g_ArrayGetSize([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArraySetCount
+******************************************************************************/
+grlAPI Gb [typeVar]ArraySetCount([type]Array * const [typeVar]Array, Gcount const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArraySetCount([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArraySort
+******************************************************************************/
+grlAPI Gb [typeVar]ArraySort([type]Array * const [typeVar]Array)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArraySort([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArraySwap
+******************************************************************************/
+grlAPI Gb [typeVar]ArraySwap([type]Array * const [typeVar]Array, Gindex const indexA, Gindex const indexB)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArraySwap([typeVar]Array, indexA, indexB);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayUpdateAt
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayUpdateAt([type]Array * const [typeVar]Array, Gindex const index, [type] const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_ArrayUpdateAt([typeVar]Array, index, (Gp const *) &value);
+
+   greturn result;
+}
+
+//lint -restore
+=arraysrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=parrayheader
+/******************************************************************************
+file:       [type]Array
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]ARRAYH)
+#define      [type]ARRAYH
+
+/*****************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef GpArray [type]Array;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]ArrayCreate(OPTIONAL_COMPARE_FUNC) \
+   ([type]Array *) gleakCreate([typeVar]ArrayCreate_((OPTIONAL_COMPARE_FUNC)), gsizeof([type]Array))
+//lint -restore
+
+grlAPI Gb                               [typeVar]ArrayAdd(             [type]Array       * const [typeVar]Array,                     [type] * const value);
+grlAPI Gb                               [typeVar]ArrayAddAt(           [type]Array       * const [typeVar]Array, Gindex const index, [type] * const value);
+grlAPI Gb                               [typeVar]ArrayAddBegin(        [type]Array       * const [typeVar]Array,                     [type] * const value);
+grlAPI Gb                               [typeVar]ArrayAddEnd(          [type]Array       * const [typeVar]Array,                     [type] * const value);
+
+grlAPI Gb                               [typeVar]ArrayClear(           [type]Array       * const [typeVar]Array, Gcount const count, Gindex const index);
+grlAPI Gb                               [typeVar]ArrayCopy(            [type]Array       * const [typeVar]Array, Gcount const count, Gindex const indexSrc, Gindex const indexDst);
+grlAPI Gb                               [typeVar]ArrayCopyFrom(        [type]Array       * const [typeVar]ArrayDst, Gindex const indexDst, [type]Array const * const [typeVar]ArraySrc, Gcount const count, Gindex const indexSrc);
+grlAPI [type]Array                     *[typeVar]ArrayCreate_(                                                   GrlCompareFunc const optionalCompareFunc);
+grlAPI Gb                               [typeVar]ArrayCreateContent(   [type]Array       * const [typeVar]Array, GrlCompareFunc const optionalCompareFunc);
+
+grlAPI void                             [typeVar]ArrayDestroy(         [type]Array       * const [typeVar]Array);
+grlAPI void                             [typeVar]ArrayDestroyContent(  [type]Array const * const [typeVar]Array);
+
+grlAPI Gb                               [typeVar]ArrayErase(           [type]Array       * const [typeVar]Array, [type] * const value);
+grlAPI Gb                               [typeVar]ArrayEraseAt(         [type]Array       * const [typeVar]Array, Gcount const count, Gindex const index);
+grlAPI void                             [typeVar]ArrayEraseBegin(      [type]Array       * const [typeVar]Array);
+grlAPI void                             [typeVar]ArrayEraseEnd(        [type]Array       * const [typeVar]Array);
+
+grlAPI Gindex                           [typeVar]ArrayFind(            [type]Array const * const [typeVar]Array, [type] * const value);
+grlAPI void                             [typeVar]ArrayFlush(           [type]Array       * const [typeVar]Array);
+grlAPI Gb                               [typeVar]ArrayForEach(         [type]Array const * const [typeVar]Array, GrlForEachFunc const func);
+
+grlAPI [type]                         **[typeVar]ArrayGet(             [type]Array const * const [typeVar]Array);
+grlAPI [type]                          *[typeVar]ArrayGetAt(           [type]Array const * const [typeVar]Array, Gindex const index);
+grlAPI [type]                          *[typeVar]ArrayGetBegin(        [type]Array const * const [typeVar]Array);
+grlAPI Gcount                           [typeVar]ArrayGetCount(        [type]Array const * const [typeVar]Array);
+grlAPI [type]                          *[typeVar]ArrayGetEnd(          [type]Array const * const [typeVar]Array);
+grlAPI Gsize                            [typeVar]ArrayGetSize(         [type]Array const * const [typeVar]Array);
+
+grlAPI Gb                               [typeVar]ArraySetCount(        [type]Array       * const [typeVar]Array, Gcount const value);
+grlAPI Gb                               [typeVar]ArraySort(            [type]Array       * const [typeVar]Array);
+grlAPI Gb                               [typeVar]ArraySwap(            [type]Array       * const [typeVar]Array, Gindex const indexA, Gindex const indexB);
+
+grlAPI Gb                               [typeVar]ArrayUpdateAt(        [type]Array       * const [typeVar]Array, Gindex const index, [type] * const value);
+
+/*****************************************************************************/
+#ifdef __cplusplus
+}
+#endif
+/*****************************************************************************/
+
+#endif
+=parrayheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=parraysrc
+/******************************************************************************
+file:       [type]Array
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+// Quiet some lint
+//lint -save -e960 -e9005
+
+/******************************************************************************
+global:
+function:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]ArrayAdd
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAdd([type]Array * const [typeVar]Array, [type] * const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayAdd([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayAddAt
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAddAt([type]Array * const [typeVar]Array, Gindex const index, [type] * const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayAddAt([typeVar]Array, index, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayAddBegin
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAddBegin([type]Array * const [typeVar]Array, [type] * const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayAddBegin([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayAddEnd
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayAddEnd([type]Array * const [typeVar]Array, [type] * const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayAddEnd([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayClear
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayClear([type]Array * const [typeVar]Array, Gcount const count, Gindex const index)
+{
+   Gb result;
+
+   genter;
+
+   result = gpArrayClear([typeVar]Array, count, index);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCopy
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayCopy([type]Array * const [typeVar]Array, Gcount const count, Gindex const indexSrc, Gindex const indexDst)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayCopy([typeVar]Array, count, indexSrc, indexDst);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCopyFrom
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayCopyFrom([type]Array * const [typeVar]ArrayDst, Gindex const indexDst, [type]Array const * const [typeVar]ArraySrc, Gcount const count, Gindex const indexSrc)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayCopyFrom([typeVar]ArrayDst, indexDst, [typeVar]ArraySrc, count, indexSrc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCreate
+******************************************************************************/
+grlAPI [type]Array *[typeVar]ArrayCreate_(GrlCompareFunc const optionalCompareFunc)
+{
+   [type]Array *result;
+
+   genter;
+   
+   result = gpArrayCreate_(
+      "[type]Array",
+      "[type] *",
+      optionalCompareFunc,
+      isVectorSizing);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayCreateContent([type]Array * const [typeVar]Array, 
+   GrlCompareFunc const optionalCompareFunc)
+{
+   Gb result;
+
+   genter;
+
+   result = gpArrayCreateContent(
+      [typeVar]Array,
+      "[type]Array",
+      "[type] *",
+      optionalCompareFunc,
+      isVectorSizing);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayDestroy
+******************************************************************************/
+grlAPI void [typeVar]ArrayDestroy([type]Array * const [typeVar]Array)
+{
+   genter;
+
+   gpArrayDestroy([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayDestroyContent
+******************************************************************************/
+grlAPI void [typeVar]ArrayDestroyContent([type]Array const * const [typeVar]Array)
+{
+   genter;
+   
+   gpArrayDestroyContent([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayErase
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayErase([type]Array * const [typeVar]Array, [type] * const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayErase([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayEraseAt
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayEraseAt([type]Array * const [typeVar]Array, Gcount const count, Gindex const index)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayEraseAt([typeVar]Array, count, index);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayEraseBegin
+******************************************************************************/
+grlAPI void [typeVar]ArrayEraseBegin([type]Array * const [typeVar]Array)
+{
+   genter;
+
+   gpArrayEraseBegin([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayEraseEnd
+******************************************************************************/
+grlAPI void [typeVar]ArrayEraseEnd([type]Array * const [typeVar]Array)
+{
+   genter;
+
+   gpArrayEraseEnd([typeVar]Array);
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayFind
+******************************************************************************/
+grlAPI Gindex [typeVar]ArrayFind([type]Array const * const [typeVar]Array, [type] * const value)
+{
+   Gindex result;
+
+   genter;
+   
+   result = gpArrayFind([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayFlush
+******************************************************************************/
+grlAPI void [typeVar]ArrayFlush([type]Array * const [typeVar]Array)
+{
+   genter;
+
+   gpArraySetCount([typeVar]Array, 0); //lint !e534
+   
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayForEach
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayForEach([type]Array const * const [typeVar]Array, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayForEach([typeVar]Array, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGet
+******************************************************************************/
+grlAPI [type] **[typeVar]ArrayGet([type]Array const * const [typeVar]Array)
+{
+   [type] **result;
+
+   genter;
+   
+   result = ([type] **) gpArrayGet([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetAt
+******************************************************************************/
+grlAPI [type] *[typeVar]ArrayGetAt([type]Array const * const [typeVar]Array, Gindex const index)
+{
+   [type] *result;
+
+   genter;
+   
+   result = gpArrayGetAt([typeVar]Array, index);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetBegin
+******************************************************************************/
+grlAPI [type] *[typeVar]ArrayGetBegin([type]Array const * const [typeVar]Array)
+{
+   [type] *result;
+
+   genter;
+   
+   result = gpArrayGetBegin([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]ArrayGetCount([type]Array const * const [typeVar]Array)
+{
+   Gcount result;
+
+   genter;
+   
+   result = gpArrayGetCount([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetEnd
+******************************************************************************/
+grlAPI [type] *[typeVar]ArrayGetEnd([type]Array const * const [typeVar]Array)
+{
+   [type] *result;
+
+   genter;
+   
+   result = gpArrayGetEnd([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayGetSize
+******************************************************************************/
+grlAPI Gsize [typeVar]ArrayGetSize([type]Array const * const [typeVar]Array)
+{
+   Gsize result;
+
+   genter;
+   
+   result = gpArrayGetSize([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArraySetCount
+******************************************************************************/
+grlAPI Gb [typeVar]ArraySetCount([type]Array * const [typeVar]Array, Gcount const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArraySetCount([typeVar]Array, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArraySort
+******************************************************************************/
+grlAPI Gb [typeVar]ArraySort([type]Array * const [typeVar]Array)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArraySort([typeVar]Array);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArraySwap
+******************************************************************************/
+grlAPI Gb [typeVar]ArraySwap([type]Array * const [typeVar]Array, Gindex const indexA, Gindex const indexB)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArraySwap([typeVar]Array, indexA, indexB);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ArrayUpdateAt
+******************************************************************************/
+grlAPI Gb [typeVar]ArrayUpdateAt([type]Array * const [typeVar]Array, Gindex const index, [type] * const value)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpArrayUpdateAt([typeVar]Array, index, value);
+
+   greturn result;
+}
+
+//lint -restore
+=parraysrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=hashheader
+/******************************************************************************
+file:       [type]Hash
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]HASHH)
+#define      [type]HASHH
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef G_Hash [type]Hash;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]HashCreate(COMPARE_FUNC, HASHSIZE) \
+   ((G_Hash *)  gleakCreate([typeVar]HashCreate_((COMPARE_FUNC), (HASHSIZE)), gsizeof([type]Hash)))
+//lint -restore
+
+grlAPI Gb             [typeVar]HashAdd(             [type]Hash       * const hash, [type] const * const value);
+
+grlAPI [type]Hash    *[typeVar]HashCreate_(                                        GrlCompareFunc const compareFunc, GhashSize const hashSize);
+grlAPI Gb             [typeVar]HashCreateContent(   [type]Hash       * const hash, GrlCompareFunc const compareFunc, GhashSize const hashSize);
+
+grlAPI void           [typeVar]HashDestroy(         [type]Hash       * const hash);
+grlAPI void           [typeVar]HashDestroyContent(  [type]Hash       * const hash);
+
+grlAPI Gb             [typeVar]HashErase(           [type]Hash       * const hash, [type] const * const value);
+
+grlAPI [type]        *[typeVar]HashFind(            [type]Hash const * const hash, [type] const * const value);
+grlAPI void           [typeVar]HashFlush(           [type]Hash       * const hash);
+grlAPI Gb             [typeVar]HashForEach(         [type]Hash const * const hash, GrlForEachFunc const func);
+
+grlAPI Gcount         [typeVar]HashGetCount(        [type]Hash const * const hash);
+
+grlAPI Gb             [typeVar]HashUpdate(          [type]Hash const * const hash, [type] const * const value);
+
+#endif
+=hashheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=hashsrc
+/******************************************************************************
+file:       [type]Hash
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+/******************************************************************************
+global:
+funciton:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]HashAdd
+******************************************************************************/
+grlAPI Gb [typeVar]HashAdd([type]Hash * const hash, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = g_HashAdd(hash, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashCreate_
+******************************************************************************/
+grlAPI [type]Hash *[typeVar]HashCreate_(GrlCompareFunc const compareFunc,
+   GhashSize const hashSize)
+{
+   [type]Hash *result;
+
+   genter;
+
+   result = g_HashCreate_(
+      gsizeof([type]),
+      "[type]Hash",
+      "[type]",
+      compareFunc,
+      (GrlHashFunc) [typeVar]Hash,
+      hashSize);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]HashCreateContent([type]Hash * const hash, 
+   GrlCompareFunc const compareFunc, GhashSize const hashSize)
+{
+   Gb result;
+
+   genter;
+
+   result = g_HashCreateContent(
+      hash,
+      gsizeof([type]),
+      "[type]Hash",
+      "[type]",
+      compareFunc,
+      (GrlHashFunc) [typeVar]Hash,
+      hashSize);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashDestroy
+******************************************************************************/
+grlAPI void [typeVar]HashDestroy([type]Hash * const hash)
+{
+   genter;
+
+   g_HashDestroy(hash);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]HashDestroy
+******************************************************************************/
+grlAPI void [typeVar]HashDestroyContent([type]Hash * const hash)
+{
+   genter;
+
+   g_HashDestroyContent(hash);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]HashErase
+******************************************************************************/
+grlAPI Gb [typeVar]HashErase([type]Hash * const hash, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = g_HashErase(hash, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashFind
+******************************************************************************/
+grlAPI [type] *[typeVar]HashFind([type]Hash const * const hash, [type] const * const value)
+{
+   [type] *result;
+
+   genter;
+
+   result = ([type] *) g_HashFind(hash, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashFlush
+******************************************************************************/
+grlAPI void [typeVar]HashFlush([type]Hash * const hash)
+{
+   genter;
+
+   g_HashFlush(hash);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]HashForEach
+******************************************************************************/
+grlAPI Gb [typeVar]HashForEach([type]Hash const * const hash, GrlForEachFunc const func)
+{
+   gb result;
+
+   genter;
+
+   result = g_HashForEach(hash, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]HashGetCount([type]Hash const * const hash)
+{
+   Gcount result;
+
+   genter;
+
+   result = g_HashGetCount(hash);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashUpdate
+******************************************************************************/
+grlAPI Gb [typeVar]HashUpdate([type]Hash const * const hash, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = g_HashUpdate(hash, value);
+
+   greturn result;
+}
+=hashsrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=phashheader
+/******************************************************************************
+file:       [type]Hash
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]HASHH)
+#define      [type]HASHH
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef GpHash [type]Hash;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]HashCreate(COMPARE_FUNC, HASHSIZE) \
+   ((GpHash *)  gleakCreate([typeVar]HashCreate_((COMPARE_FUNC), (HASHSIZE)), gsizeof([type]Hash)))
+//lint -restore
+
+grlAPI Gb             [typeVar]HashAdd(             [type]Hash       * const hash, [type] * const value);
+
+grlAPI [type]Hash    *[typeVar]HashCreate_(                                        GrlCompareFunc const compareFunc, GhashSize const hashSize);
+grlAPI Gb             [typeVar]HashCreateContent(   [type]Hash       * const hash, GrlCompareFunc const compareFunc, GhashSize const hashSize);
+
+grlAPI void           [typeVar]HashDestroy(         [type]Hash       * const hash);
+grlAPI void           [typeVar]HashDestroyContent(  [type]Hash       * const hash);
+
+grlAPI Gb             [typeVar]HashErase(           [type]Hash       * const hash, [type] const * const value);
+
+grlAPI [type]        *[typeVar]HashFind(            [type]Hash const * const hash, [type] const * const value);
+grlAPI void           [typeVar]HashFlush(           [type]Hash       * const hash);
+grlAPI Gb             [typeVar]HashForEach(         [type]Hash const * const hash, GrlForEachFunc const func);
+
+grlAPI Gcount         [typeVar]HashGetCount(        [type]Hash const * const hash);
+
+grlAPI Gb             [typeVar]HashUpdate(          [type]Hash const * const hash, [type] * const value);
+
+#endif
+=phashheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=phashsrc
+/******************************************************************************
+file:       [type]Hash
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+/******************************************************************************
+global:
+funciton:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]HashAdd
+******************************************************************************/
+grlAPI Gb [typeVar]HashAdd([type]Hash * const hash, [type] * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = gpHashAdd(hash, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashCreate_
+******************************************************************************/
+grlAPI [type]Hash *[typeVar]HashCreate_(GrlCompareFunc const compareFunc, GhashSize const hashSize)
+{
+   [type]Hash *result;
+
+   genter;
+
+   result = gpHashCreate_(
+      "[type]Hash",
+      "[type]",
+      compareFunc,
+      (GrlHashFunc) [typeVar]Hash,
+      hashSize);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]HashCreateContent([type]Hash * const hash, 
+   GrlCompareFunc const compareFunc, GhashSize const hashSize)
+{
+   Gb result;
+
+   genter;
+
+   result = gpHashCreateContent(
+      hash,
+      "[type]Hash",
+      "[type]",
+      compareFunc,
+      (GrlHashFunc) [typeVar]Hash,
+      hashSize);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashDestroy
+******************************************************************************/
+grlAPI void [typeVar]HashDestroy([type]Hash * const hash)
+{
+   genter;
+
+   gpHashDestroy(hash);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]HashDestroy
+******************************************************************************/
+grlAPI void [typeVar]HashDestroyContent([type]Hash * const hash)
+{
+   genter;
+
+   gpHashDestroyContent(hash);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]HashErase
+******************************************************************************/
+grlAPI Gb [typeVar]HashErase([type]Hash * const hash, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = gpHashErase(hash, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashFind
+******************************************************************************/
+grlAPI [type] *[typeVar]HashFind([type]Hash const * const hash, [type] const * const value)
+{
+   [type] *result;
+
+   genter;
+
+   result = ([type] *) gpHashFind(hash, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashFlush
+******************************************************************************/
+grlAPI void [typeVar]HashFlush([type]Hash * const hash)
+{
+   genter;
+
+   gpHashFlush(hash);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]HashForEach
+******************************************************************************/
+grlAPI Gb [typeVar]HashForEach([type]Hash const * const hash, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+
+   result = gpHashForEach(hash, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]HashGetCount([type]Hash const * const hash)
+{
+   Gcount result;
+
+   genter;
+
+   result = gpHashGetCount(hash);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]HashUpdate
+******************************************************************************/
+grlAPI Gb [typeVar]HashUpdate([type]Hash const * const hash, [type] * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = gpHashUpdate(hash, value);
+
+   greturn result;
+}
+=phashsrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=listheader
+/******************************************************************************
+file:       [type]List
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]LISTH)
+#define      [type]LISTH
+
+/*****************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef G_List       [type]List;
+typedef G_ListItem   [type]ListItem;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]ListCreate(OPTIONAL_COMPARE_FUNC) \
+   ([type]Array *) gleakCreate([typeVar]ListCreate_((OPTIONAL_COMPARE_FUNC)), gsizeof([type]List))
+//lint -restore
+
+grlAPI [type]ListItem      *[typeVar]ListAdd(             [type]List       * const list, [type] const * const value);
+grlAPI [type]ListItem      *[typeVar]ListAddBegin(        [type]List       * const list, [type] const * const value);
+grlAPI [type]ListItem      *[typeVar]ListAddEnd(          [type]List       * const list, [type] const * const value);
+
+grlAPI [type]List          *[typeVar]ListCreate_(                                        GrlCompareFunc const optionalCompareFunc);
+grlAPI Gb                   [typeVar]ListCreateContent(   [type]List       * const list, GrlCompareFunc const optionalCompareFunc);
+
+grlAPI void                 [typeVar]ListDestroy(         [type]List       * const list);
+grlAPI void                 [typeVar]ListDestroyContent(  [type]List       * const list);
+
+grlAPI Gb                   [typeVar]ListErase(           [type]List       * const list, [type] const * const value);
+grlAPI Gb                   [typeVar]ListEraseBegin(      [type]List       * const list);
+grlAPI Gb                   [typeVar]ListEraseEnd(        [type]List       * const list);
+
+grlAPI [type]ListItem      *[typeVar]ListFind(            [type]List const * const list, [type] const * const value);
+grlAPI void                 [typeVar]ListFlush(           [type]List       * const list);
+grlAPI Gb                   [typeVar]ListForEach(         [type]List const * const list, GrlForEachFunc const func);
+
+grlAPI [type]ListItem      *[typeVar]ListGetBegin(        [type]List const * const list);
+grlAPI Gcount               [typeVar]ListGetCount(        [type]List const * const list);
+grlAPI [type]ListItem      *[typeVar]ListGetEnd(          [type]List const * const list);
+
+// [type]ListItem functions
+grlAPI [type]ListItem      *[typeVar]ListItemAdd(         [type]List       * const list, [type]ListItem * const litem, [type] const * const value);
+
+grlAPI [type]ListItem      *[typeVar]ListItemErase(       [type]List       * const list, [type]ListItem * const litem);
+
+grlAPI [type]              *[typeVar]ListItemGet(         [type]ListItem const * const litem);
+grlAPI [type]ListItem      *[typeVar]ListItemGetNext(     [type]ListItem const * const litem);
+grlAPI [type]ListItem      *[typeVar]ListItemGetPrev(     [type]ListItem const * const litem);
+
+grlAPI void                 [typeVar]ListItemUpdate(      [type]List       * const list, [type]ListItem * const litem, [type] const * const value);
+
+/*****************************************************************************/
+#ifdef __cplusplus
+}
+#endif
+/*****************************************************************************/
+
+#endif
+=listheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=listsrc
+/******************************************************************************
+file:       [type]List
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+/******************************************************************************
+global:
+funciton:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]ListAdd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListAdd([type]List * const list, [type] const * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListAdd(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListAddBegin
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListAddBegin([type]List * const list, [type] const * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListAddBegin(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListAddEnd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListAddEnd([type]List * const list, [type] const * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListAddEnd(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListCreate_
+******************************************************************************/
+grlAPI [type]List *[typeVar]ListCreate_(GrlCompareFunc const optionalCompareFunc)
+{
+   [type]List *result;
+
+   genter;
+
+   result = g_ListCreate_(
+      gsizeof([type]),
+      "[type]List",
+      "[type]",
+      optionalCompareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]ListCreateContent([type]List * const list, 
+   GrlCompareFunc const optionalCompareFunc)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ListCreateContent(
+      list,
+      gsizeof([type]),
+      "[type]List",
+      "[type]",
+      optionalCompareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListDestroy
+******************************************************************************/
+grlAPI void [typeVar]ListDestroy([type]List * const list)
+{
+   genter;
+
+   g_ListDestroy(list);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ListDestroyContent
+******************************************************************************/
+grlAPI void [typeVar]ListDestroyContent([type]List * const list)
+{
+   genter;
+
+   g_ListDestroyContent(list);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ListErase
+******************************************************************************/
+grlAPI Gb [typeVar]ListErase([type]List * const list, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ListErase(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListEraseBegin
+******************************************************************************/
+grlAPI Gb [typeVar]ListEraseBegin([type]List * const list)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ListEraseBegin(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListEraseEnd
+******************************************************************************/
+grlAPI Gb [typeVar]ListEraseEnd([type]List * const list)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ListEraseEnd(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListFind
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListFind([type]List const * const list, [type] const * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+   
+   result = g_ListFind(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListFlush
+******************************************************************************/
+grlAPI void [typeVar]ListFlush([type]List * const list)
+{
+   genter;
+
+   g_ListFlush(list);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ListForEach
+******************************************************************************/
+grlAPI Gb [typeVar]ListForEach([type]List const * const list, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+
+   result = g_ListForEach(list, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListGetBegin
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListGetBegin([type]List const * const list)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListGetBegin(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]ListGetCount([type]List const * const list)
+{
+   Gcount result;
+
+   genter;
+
+   result = g_ListGetCount(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListGetEnd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListGetEnd([type]List const * const list)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListGetEnd(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemAdd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemAdd([type]List * const list, [type]ListItem * const litem,
+   [type] const * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListItemAdd(list, litem, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemErase
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemErase([type]List * const list, [type]ListItem * const litem)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListItemErase(list, litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemGet
+******************************************************************************/
+grlAPI [type] *[typeVar]ListItemGet([type]ListItem const * const litem)
+{
+   [type] *result;
+
+   genter;
+
+   result = ([type] *) g_ListItemGet(litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemGetNext
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemGetNext([type]ListItem const * const litem)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListItemGetNext(litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemGetPrev
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemGetPrev([type]ListItem const * const litem)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = g_ListItemGetPrev(litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemUpdate
+******************************************************************************/
+grlAPI void [typeVar]ListItemUpdate([type]List * const list, [type]ListItem * const litem, 
+   [type] const * const value)
+{
+   genter;
+
+   g_ListItemUpdate(list, litem, value);
+
+   greturn;
+}
+=listsrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=plistheader
+/******************************************************************************
+file:       [type]List
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]LISTH)
+#define      [type]LISTH
+
+/*****************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef GpList       [type]List;
+typedef GpListItem   [type]ListItem;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]ListCreate(OPTIONAL_COMPARE_FUNC) \
+   ([type]Array *) gleakCreate([typeVar]ListCreate_((OPTIONAL_COMPARE_FUNC)), gsizeof([type]List))
+//lint -restore
+
+grlAPI [type]ListItem      *[typeVar]ListAdd(             [type]List       * const list, [type] * const value);
+grlAPI [type]ListItem      *[typeVar]ListAddBegin(        [type]List       * const list, [type] * const value);
+grlAPI [type]ListItem      *[typeVar]ListAddEnd(          [type]List       * const list, [type] * const value);
+
+grlAPI [type]List          *[typeVar]ListCreate_(                                        GrlCompareFunc const optionalCompareFunc);
+grlAPI Gb                   [typeVar]ListCreateContent(   [type]List       * const list, GrlCompareFunc const optionalCompareFunc);
+
+grlAPI void                 [typeVar]ListDestroy(         [type]List       * const list);
+grlAPI void                 [typeVar]ListDestroyContent(  [type]List       * const list);
+
+grlAPI Gb                   [typeVar]ListErase(           [type]List       * const list, [type] const * const value);
+grlAPI Gb                   [typeVar]ListEraseBegin(      [type]List       * const list);
+grlAPI Gb                   [typeVar]ListEraseEnd(        [type]List       * const list);
+
+grlAPI [type]ListItem      *[typeVar]ListFind(            [type]List const * const list, [type] const * const value);
+grlAPI void                 [typeVar]ListFlush(           [type]List       * const list);
+grlAPI Gb                   [typeVar]ListForEach(         [type]List const * const list, GrlForEachFunc const func);
+
+grlAPI [type]ListItem      *[typeVar]ListGetBegin(        [type]List const * const list);
+grlAPI Gcount               [typeVar]ListGetCount(        [type]List const * const list);
+grlAPI [type]ListItem      *[typeVar]ListGetEnd(          [type]List const * const list);
+
+// [type]ListItem functions
+grlAPI [type]ListItem      *[typeVar]ListItemAdd(         [type]List       * const list, [type]ListItem * const litem, [type] * const value);
+
+grlAPI [type]ListItem      *[typeVar]ListItemErase(       [type]List       * const list, [type]ListItem * const litem);
+
+grlAPI [type]              *[typeVar]ListItemGet(         [type]ListItem const * const litem);
+grlAPI [type]ListItem      *[typeVar]ListItemGetNext(     [type]ListItem const * const litem);
+grlAPI [type]ListItem      *[typeVar]ListItemGetPrev(     [type]ListItem const * const litem);
+
+grlAPI void                 [typeVar]ListItemUpdate(      [type]List       * const list, [type]ListItem * const litem, [type] * const value);
+
+/*****************************************************************************/
+#ifdef __cplusplus
+}
+#endif
+/*****************************************************************************/
+
+#endif
+=plistheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=plistsrc
+/******************************************************************************
+file:       [type]List
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+/******************************************************************************
+global:
+funciton:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]ListAdd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListAdd([type]List * const list, [type] * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListAdd(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListAddBegin
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListAddBegin([type]List * const list, [type] * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListAddBegin(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListAddEnd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListAddEnd([type]List * const list, [type] * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListAddEnd(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListCreate_
+******************************************************************************/
+grlAPI [type]List *[typeVar]ListCreate_(GrlCompareFunc const optionalCompareFunc)
+{
+   [type]List *result;
+
+   genter;
+
+   result = ([type]List *) gpListCreate_(
+      gsizeof([type]),
+      "[type]List",
+      "[type]",
+      optionalCompareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]ListCreateContent([type]List * const list, 
+   GrlCompareFunc const optionalCompareFunc)
+{
+   Gb result;
+
+   genter;
+
+   result = gpListCreateContent(
+      list, 
+      gsizeof([type]),
+      "[type]List",
+      "[type]",
+      optionalCompareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListDestroy
+******************************************************************************/
+grlAPI void [typeVar]ListDestroy([type]List * const list)
+{
+   genter;
+
+   gpListDestroy(list);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ListDestroyContent
+******************************************************************************/
+grlAPI void [typeVar]ListDestroyContent([type]List * const list)
+{
+   genter;
+
+   gpListDestroyContent(list);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ListErase
+******************************************************************************/
+grlAPI Gb [typeVar]ListErase([type]List * const list, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = gpListErase(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListEraseBegin
+******************************************************************************/
+grlAPI Gb [typeVar]ListEraseBegin([type]List * const list)
+{
+   Gb result;
+
+   genter;
+
+   result = gpListEraseBegin(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListEraseEnd
+******************************************************************************/
+grlAPI Gb [typeVar]ListEraseEnd([type]List * const list)
+{
+   Gb result;
+
+   genter;
+
+   result = gpListEraseEnd(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListFind
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListFind([type]List const * const list, [type] const * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+   
+   result = gpListFind(list, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListFlush
+******************************************************************************/
+grlAPI void [typeVar]ListFlush([type]List * const list)
+{
+   genter;
+
+   gpListFlush(list);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]ListForEach
+******************************************************************************/
+grlAPI Gb [typeVar]ListForEach([type]List const * const list, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+
+   result = gpListForEach(list, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListGetBegin
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListGetBegin([type]List const * const list)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListGetBegin(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]ListGetCount([type]List const * const list)
+{
+   Gcount result;
+
+   genter;
+
+   result = gpListGetCount(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListGetEnd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListGetEnd([type]List const * const list)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListGetEnd(list);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemAdd
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemAdd([type]List * const list, [type]ListItem * const litem,
+   [type] * const value)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListItemAdd(list, litem, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemErase
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemErase([type]List * const list, [type]ListItem * const litem)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListItemErase(list, litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemGet
+******************************************************************************/
+grlAPI [type] *[typeVar]ListItemGet([type]ListItem const * const litem)
+{
+   [type] *result;
+
+   genter;
+
+   result = ([type] *) gpListItemGet(litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemGetNext
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemGetNext([type]ListItem const * const litem)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListItemGetNext(litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemGetPrev
+******************************************************************************/
+grlAPI [type]ListItem *[typeVar]ListItemGetPrev([type]ListItem const * const litem)
+{
+   [type]ListItem *result;
+
+   genter;
+
+   result = gpListItemGetPrev(litem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]ListItemUpdate
+******************************************************************************/
+grlAPI void [typeVar]ListItemUpdate([type]List * const list, [type]ListItem * const litem, [type] * const value)
+{
+   genter;
+
+   gpListItemUpdate(list, litem, value);
+
+   greturn;
+}
+=plistsrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=treeheader
+/******************************************************************************
+file:       [type]Tree
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]Tree_HEADER)
+#define      [type]Tree_HEADER
+
+/******************************************************************************
+include:
+******************************************************************************/
+
+/*****************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef struct G_Tree     [type]Tree;
+typedef struct G_TreeItem [type]TreeItem;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]TreeCreate(COMPARE_FUNC) \
+   ([type]Tree *) gleakCreate((Gp *) [typeVar]TreeCreate_((COMPARE_FUNC)), gsizeof([type]Tree)) 
+//lint -restore
+
+grlAPI [type]TreeItem   *[typeVar]TreeAdd(             [type]Tree       * const tree, [type] const * const value);
+
+grlAPI [type]Tree       *[typeVar]TreeCreate_(                                        GrlCompareFunc const compareFunc);
+grlAPI Gb                [typeVar]TreeCreateContent(   [type]Tree       * const tree, GrlCompareFunc const compareFunc);
+                         
+grlAPI void              [typeVar]TreeDestroy(         [type]Tree       * const tree);
+grlAPI void              [typeVar]TreeDestroyContent(  [type]Tree       * const tree);
+                         
+grlAPI Gb                [typeVar]TreeErase(           [type]Tree       * const tree, [type] const * const value);
+grlAPI Gb                [typeVar]TreeEraseBegin(      [type]Tree       * const tree);
+grlAPI Gb                [typeVar]TreeEraseEnd(        [type]Tree       * const tree);
+
+grlAPI [type]TreeItem   *[typeVar]TreeFind(            [type]Tree const * const tree, [type] const * const value);
+grlAPI void              [typeVar]TreeFlush(           [type]Tree       * const tree);
+grlAPI Gb                [typeVar]TreeForEach(         [type]Tree const * const tree, GrlForEachFunc const func);
+
+grlAPI [type]TreeItem   *[typeVar]TreeGetBegin(        [type]Tree const * const tree);
+grlAPI Gcount            [typeVar]TreeGetCount(        [type]Tree const * const tree);
+grlAPI [type]TreeItem   *[typeVar]TreeGetEnd(          [type]Tree const * const tree);
+
+// [type]TreeItem functions
+grlAPI [type]TreeItem   *[typeVar]TreeItemDestroy(     [type]Tree       * const tree, [type]TreeItem * const treeItem);
+
+grlAPI [type]           *[typeVar]TreeItemGet(         [type]TreeItem const * const treeItem);
+grlAPI [type]TreeItem   *[typeVar]TreeItemGetNext(     [type]TreeItem const * const treeItem);
+grlAPI [type]TreeItem   *[typeVar]TreeItemGetPrev(     [type]TreeItem const * const treeItem);
+
+/*****************************************************************************/
+#ifdef __cplusplus
+}
+#endif
+/*****************************************************************************/
+
+#endif
+=treeheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=treesrc
+/******************************************************************************
+file:       [type]Tree
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+/******************************************************************************
+global:
+function:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]TreeAdd
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeAdd([type]Tree * const tree, [type] const * const value)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = g_TreeAdd(tree, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeCreate_
+******************************************************************************/
+grlAPI [type]Tree *[typeVar]TreeCreate_(GrlCompareFunc const compareFunc)
+{
+   [type]Tree *result;
+
+   genter;
+
+   result = g_TreeCreate_(
+      gsizeof([type]),
+      "[type]Tree",
+      "[type]",
+      compareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]TreeCreateContent([type]Tree * const tree,
+   GrlCompareFunc const compareFunc)
+{
+   Gb result;
+
+   genter;
+
+   result = g_TreeCreateContent(
+      tree,
+      gsizeof([type]),
+      "[type]Tree",
+      "[type]",
+      compareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeDestroy
+******************************************************************************/
+grlAPI void [typeVar]TreeDestroy([type]Tree * const tree)
+{
+   genter;
+
+   g_TreeDestroy(tree);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]TreeDestoryContent
+******************************************************************************/
+grlAPI void [typeVar]TreeDestroyContent([type]Tree * const tree)
+{
+   genter;
+
+   g_TreeDestroyContent(tree);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]TreeErase
+******************************************************************************/
+grlAPI Gb [typeVar]TreeErase([type]Tree * const tree, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = g_TreeErase(tree, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeEraseBegin
+******************************************************************************/
+grlAPI Gb [typeVar]TreeEraseBegin([type]Tree * const tree)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_TreeEraseBegin(tree);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeEraseEnd
+******************************************************************************/
+grlAPI Gb [typeVar]TreeEraseEnd([type]Tree * const tree)
+{
+   Gb result;
+
+   genter;
+   
+   result = g_TreeEraseEnd(tree);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeFlush
+******************************************************************************/
+grlAPI void [typeVar]TreeFlush([type]Tree * const tree)
+{
+   genter;
+
+   g_TreeFlush(tree);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]TreeForEach
+******************************************************************************/
+grlAPI Gb [typeVar]TreeForEach([type]Tree const * const tree, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+
+   result = g_TreeForEach(tree, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeFind
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeFind([type]Tree const * const tree, [type] const * const value)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = g_TreeFind(tree, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeGetBegin
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeGetBegin([type]Tree const * const tree)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = g_TreeGetBegin(tree);
+
+   greturn result;
+} //lint !e954
+
+/******************************************************************************
+func: [typeVar]TreeGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]TreeGetCount([type]Tree const * const tree)
+{
+   Gcount result;
+
+   genter;
+
+   result = g_TreeGetCount(tree);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeGetEnd
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeGetEnd([type]Tree const * const tree)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = g_TreeGetEnd(tree);
+
+   greturn result;
+} //lint !e954
+
+/******************************************************************************
+func: [typeVar]TreeItemGet
+******************************************************************************/
+grlAPI [type] *[typeVar]TreeItemGet([type]TreeItem const * const treeItem)
+{
+   [type] *result;
+
+   genter;
+
+   result = g_TreeItemGet(treeItem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeItemGetNext
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeItemGetNext([type]TreeItem const * const treeItem)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = g_TreeItemGetNext(treeItem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeItemGetPrev
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeItemGetPrev([type]TreeItem const * const treeItem)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = g_TreeItemGetPrev(treeItem);
+
+   greturn result;
+}
+=treesrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=ptreeheader
+/******************************************************************************
+file:       [type]Tree
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+#if !defined([type]Tree_HEADER)
+#define      [type]Tree_HEADER
+
+/******************************************************************************
+include:
+******************************************************************************/
+
+/*****************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+typedef struct GpTree     [type]Tree;
+typedef struct GpTreeItem [type]TreeItem;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+//lint -save -e960 -e961 -e9023 -e9024 -e9026
+#define [typeVar]TreeCreate(COMPARE_FUNC) \
+   ([type]Tree *) gleakCreate((Gp *) [typeVar]TreeCreate_((COMPARE_FUNC)), gsizeof([type]Tree)) 
+//lint -restore
+
+grlAPI [type]TreeItem   *[typeVar]TreeAdd(             [type]Tree       * const tree, [type] * const value);
+
+grlAPI [type]Tree       *[typeVar]TreeCreate_(                                        GrlCompareFunc const compareFunc);
+grlAPI Gb                [typeVar]TreeCreateContent(   [type]Tree       * const tree, GrlCompareFunc const compareFunc);
+                         
+grlAPI void              [typeVar]TreeDestroy(         [type]Tree       * const tree);
+grlAPI void              [typeVar]TreeDestroyContent(  [type]Tree       * const tree);
+                         
+grlAPI Gb                [typeVar]TreeErase(           [type]Tree       * const tree, [type] const * const value);
+grlAPI Gb                [typeVar]TreeEraseBegin(      [type]Tree       * const tree);
+grlAPI Gb                [typeVar]TreeEraseEnd(        [type]Tree       * const tree);
+
+grlAPI [type]TreeItem   *[typeVar]TreeFind(            [type]Tree const * const tree, [type] const * const value);
+grlAPI void              [typeVar]TreeFlush(           [type]Tree       * const tree);
+grlAPI Gb                [typeVar]TreeForEach(         [type]Tree const * const tree, GrlForEachFunc const func);
+
+grlAPI [type]TreeItem   *[typeVar]TreeGetBegin(        [type]Tree const * const tree);
+grlAPI Gcount            [typeVar]TreeGetCount(        [type]Tree const * const tree);
+grlAPI [type]TreeItem   *[typeVar]TreeGetEnd(          [type]Tree const * const tree);
+
+// [type]TreeItem functions
+grlAPI [type]TreeItem   *[typeVar]TreeItemDestroy(     [type]Tree       * const tree, [type]TreeItem * const treeItem);
+
+grlAPI [type]           *[typeVar]TreeItemGet(         [type]TreeItem const * const treeItem);
+grlAPI [type]TreeItem   *[typeVar]TreeItemGetNext(     [type]TreeItem const * const treeItem);
+grlAPI [type]TreeItem   *[typeVar]TreeItemGetPrev(     [type]TreeItem const * const treeItem);
+
+/*****************************************************************************/
+#ifdef __cplusplus
+}
+#endif
+/*****************************************************************************/
+
+#endif
+=ptreeheader
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=ptreesrc
+/******************************************************************************
+file:       [type]Tree
+author:     Robbert de Groot
+copyright:  2015, Robbert de Groot
+
+Code generated from ZPP
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "pre.h"
+
+/******************************************************************************
+global:
+function:
+******************************************************************************/
+/******************************************************************************
+func: [typeVar]TreeAdd
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeAdd([type]Tree * const tree, [type] * const value)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = gpTreeAdd(tree, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeCreate_
+******************************************************************************/
+grlAPI [type]Tree *[typeVar]TreeCreate_(GrlCompareFunc const compareFunc)
+{
+   [type]Tree *result;
+
+   genter;
+
+   result = gpTreeCreate_(
+      gsizeof([type]),
+      "[type]Tree",
+      "[type]",
+      compareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeCreateContent
+******************************************************************************/
+grlAPI Gb [typeVar]TreeCreateContent([type]Tree * const tree, 
+   GrlCompareFunc const compareFunc)
+{
+   Gb result;
+
+   genter;
+
+   result = gpTreeCreateContent(
+      tree,
+      gsizeof([type]),
+      "[type]Tree",
+      "[type]",
+      compareFunc);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeDestroy
+******************************************************************************/
+grlAPI void [typeVar]TreeDestroy([type]Tree * const tree)
+{
+   genter;
+
+   gpTreeDestroy(tree);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]TreeDestoryContent
+******************************************************************************/
+grlAPI void [typeVar]TreeDestroyContent([type]Tree * const tree)
+{
+   genter;
+
+   gpTreeDestroyContent(tree);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]TreeErase
+******************************************************************************/
+grlAPI Gb [typeVar]TreeErase([type]Tree * const tree, [type] const * const value)
+{
+   Gb result;
+
+   genter;
+
+   result = gpTreeErase(tree, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeEraseBegin
+******************************************************************************/
+grlAPI Gb [typeVar]TreeEraseBegin([type]Tree * const tree)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpTreeEraseBegin(tree);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeEraseEnd
+******************************************************************************/
+grlAPI Gb [typeVar]TreeEraseEnd([type]Tree * const tree)
+{
+   Gb result;
+
+   genter;
+   
+   result = gpTreeEraseEnd(tree);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeFlush
+******************************************************************************/
+grlAPI void [typeVar]TreeFlush([type]Tree * const tree)
+{
+   genter;
+
+   gpTreeFlush(tree);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]TreeForEach
+******************************************************************************/
+grlAPI Gb [typeVar]TreeForEach([type]Tree const * const tree, GrlForEachFunc const func)
+{
+   Gb result;
+
+   genter;
+
+   result = gpTreeForEach(tree, func);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeFind
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeFind([type]Tree const * const tree, [type] const * const value)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = gpTreeFind(tree, value);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeGetBegin
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeGetBegin([type]Tree const * const tree)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = gpTreeGetBegin(tree);
+
+   greturn result;
+} //lint !e954
+
+/******************************************************************************
+func: [typeVar]TreeGetCount
+******************************************************************************/
+grlAPI Gcount [typeVar]TreeGetCount([type]Tree const * const tree)
+{
+   Gcount result;
+
+   genter;
+
+   result = gpTreeGetCount(tree);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeGetEnd
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeGetEnd([type]Tree const * const tree)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = gpTreeGetEnd(tree);
+
+   greturn result;
+} //lint !e954
+
+/******************************************************************************
+func: [typeVar]TreeItemGet
+******************************************************************************/
+grlAPI [type] *[typeVar]TreeItemGet([type]TreeItem const * const treeItem)
+{
+   [type] *result;
+
+   genter;
+
+   result = gpTreeItemGet(treeItem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeItemGetNext
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeItemGetNext([type]TreeItem const * const treeItem)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = gpTreeItemGetNext(treeItem);
+
+   greturn result;
+}
+
+/******************************************************************************
+func: [typeVar]TreeItemGetPrev
+******************************************************************************/
+grlAPI [type]TreeItem *[typeVar]TreeItemGetPrev([type]TreeItem const * const treeItem)
+{
+   [type]TreeItem *result;
+
+   genter;
+
+   result = gpTreeItemGetPrev(treeItem);
+
+   greturn result;
+}
+=ptreesrc
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=create
+/******************************************************************************
+func: [typeVar]Create
+******************************************************************************/
+zAPI [type] *[typeVar]Create([paramDef])
+{
+   [type] *[typeVar];
+
+   genter;
+
+   greturnNullIf(!_isStarted);
+
+   [typeVar] = ([type] *) gmemCreateType([type]);
+   greturnNullIf(![typeVar]);
+
+   if (![typeVar]CreateContent([typeVar], [param]))
+   {
+      gmemDestroy([typeVar]);
+      greturn NULL;
+   }
+
+   greturn [typeVar];
+}
+
+/******************************************************************************
+func: [typeVar]CreateContent
+******************************************************************************/
+zAPI Gb [typeVar]CreateContent([type] * const [typeVar], [paramDef])
+{
+   genter;
+
+   greturnFalseIf(!_isStarted);
+
+   gmemClearType([type], [typeVar]);
+
+   greturn gbTRUE;
+}
+=create
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=createcontent
+/******************************************************************************
+func: [typeVar]CreateContent
+******************************************************************************/
+zAPI Gb [typeVar]CreateContent([type] * const [typeVar], [paramDef])
+{
+   genter;
+
+   greturnFalseIf(!_isStarted)
+
+   gmemClearType([type], [typeVar]);
+
+   greturn gbTRUE;
+}
+=createcontent
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=destroy
+/******************************************************************************
+func: [typeVar]Destroy
+******************************************************************************/
+zAPI void [typeVar]Destroy([type] * const [typeVar])
+{
+   genter;
+
+   greturnVoidIf(
+      !_isStarted ||
+      ![typeVar])
+
+   [typeVar]DestroyContent([typeVar]);
+
+   greturn;
+}
+
+/******************************************************************************
+func: [typeVar]DestroyContent
+******************************************************************************/
+zAPI void [typeVar]DestroyContent([type] * const [typeVar])
+{
+   genter;
+
+   greturnVoidIf(
+      !_isStarted ||
+      ![typeVar])
+
+   greturn;
+}
+=destroy
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=destroycontent
+/******************************************************************************
+func: [typeVar]DestroyContent
+******************************************************************************/
+zAPI void [typeVar]DestroyContent([type] * const [typeVar])
+{
+   genter;
+
+   greturnVoidIf(
+      !_isStarted ||
+      ![typeVar]);
+
+   greturn;
+}
+=destroycontent
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=func
+/******************************************************************************
+func: [typeVar]
+******************************************************************************/
+=func
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=get
+/******************************************************************************
+func: [typeVar]Get[varName]
+******************************************************************************/
+zAPI [varType] [typeVar]Get[varName]([type] const * const [typeVar])
+{
+   genter;
+
+   greturnIf(
+         !_isStarted ||
+         ![typeVar],
+      [def]);
+
+   greturn [typeVar]->[var];
+}
+=get
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=header
+/******************************************************************************
+file:       [type]
+author:     [author]
+company:    [company]
+copyright:  [copyright], [name]
+
+description:
+
+******************************************************************************/
+
+/******************************************************************************
+include:
+******************************************************************************/
+#include "precompiled.h"
+#include "[type].h"
+
+/******************************************************************************
+local:
+constant:
+******************************************************************************/
+
+/******************************************************************************
+type:
+******************************************************************************/
+
+/******************************************************************************
+variable:
+******************************************************************************/
+static Gb _isStarted = gbFALSE;
+
+/******************************************************************************
+prototype:
+******************************************************************************/
+
+/******************************************************************************
+global:
+function:
+******************************************************************************/
+
+=header
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=is
+/******************************************************************************
+func: [typeVar][varName]
+******************************************************************************/
+zAPI Gb [typeVar][varName]([type] const * const [typeVar])
+{
+   genter;
+
+   greturnFalseIf(
+         !_isStarted ||
+         ![typeVar],
+      gbFALSE);
+
+   greturn [typeVar]->[var];
+}
+=is
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=local
+/******************************************************************************
+local:
+funciton:
+******************************************************************************/
+=local
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=commentBlock
+/******************************************************************************
+:
+******************************************************************************/
+=commentBlock
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=set
+/******************************************************************************
+func: [typeVar]Set[varName]
+******************************************************************************/
+zAPI Gb [typeVar]Set[varName]([type] * const [typeVar], [varType] const value)
+{
+   genter;
+
+   greturnFalseIf(
+      !_isStarted ||
+      ![typeVar]);
+
+   [typeVar]->[var] = ([varType]) value;
+
+   greturn gbTRUE;
+}
+=set
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=start
+/******************************************************************************
+func: [typeVar]Start
+******************************************************************************/
+zAPI Gb [typeVar]Start(void)
+{
+   genter;
+
+   greturnTrueIf(_isStarted);
+
+   _isStarted = gbTRUE;
+
+   greturn gbTRUE;
+}
+=start
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+=stop
+/******************************************************************************
+func: [typeVar]Stop
+******************************************************************************/
+zAPI void [typeVar]Stop(void)
+{
+   genter;
+
+   greturnVoidIf(!_isStarted);
+
+   _isStarted = gbFALSE;
+
+   greturn;
+}
+=stop
